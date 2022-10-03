@@ -226,7 +226,7 @@ http://www.tooplate.com/view/2106-soft-landing
   }
 
   .custom-navbar .navbar-brand {
-    color: #ffffff;
+    color: #ee9617;
     font-size: 25px;
     font-weight: 500;
     letter-spacing: -1px;
@@ -822,4 +822,17 @@ http://www.tooplate.com/view/2106-soft-landing
     .testimonial-info {
       height: 65vh;
     }
+  }
+
+  .subhead {
+    color: black;
+    font-size: medium;
+    font-weight: bold;
+  }
+
+  .text {
+    color: black;
+    font-size: medium;
+    line-height: 35px;
+    padding: 10px;
   }
