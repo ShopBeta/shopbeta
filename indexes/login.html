@@ -33,13 +33,13 @@
                                                 <span>Please sign in to your account below.</span>
                                             </h4>
                                         </div>
-                                        <form action="https://shopbeta-app.herokuapp.com/users/login" class="" method="post">
+                                        <form action="http://localhost:3000/users/login" method="post">
                                             <div class="form-row">
                                                 <div class="col-md-12">
-                                                    <div class="position-relative form-group"><input name="email" id="exampleEmail" placeholder="Email here..." type="email" class="form-control" required></div>
+                                                    <div class="position-relative form-group"><input name="email" id="exampleEmail" placeholder="Email here..." type="email" class="email form-control" required></div>
                                                 </div>
                                                 <div class="col-md-12">
-                                                    <div class="position-relative form-group"><input name="password" id="examplePassword" placeholder="Password here..." type="password" class="form-control" required></div>
+                                                    <div class="position-relative form-group"><input name="password" id="examplePassword" placeholder="Password here..." type="password" class="password form-control" required></div>
                                                 </div>
                                             </div>
                                             <div class="position-relative form-check"><input name="check" id="exampleCheck" type="checkbox" class="form-check-input"><label for="exampleCheck" class="form-check-label">Keep me logged in</label></div>
@@ -49,7 +49,7 @@
                                                 <div class="float-left"><a href="./forgot Password.html" class="btn-lg btn btn-link">Recover Password</a></div>
                                                 <div class="float-right">
                                                     <a href="https://shopbetaonline.herokuapp.com">
-                                                      <button style="background-color: #ee9617; color: white" type="submit" class="btn btn-lg">Login to Dashboard</button>
+                                                      <button onclick=setToken() style="background-color: #ee9617; color: white" type="submit" class="btn btn-lg">Login to Dashboard</button>
                                                     </a>
                                                 </div>
                                             </div>
@@ -64,5 +64,23 @@
             </div>
     </div>
 <script type="text/javascript" src="./Login Boxed/main.07a59de7b920cd76b874.js.download"></script>
+<script>
+    const setToken = async () => {
+         await fetch('http://localhost:3000/users/login', {
+            method: "POST",
+            headers: {
+                email: document.querySelector('.email').value,
+                password: document.querySelector('.password').value
+            }
+        })
+        .then((res) => res.json())
+        .then((res) => window.localStorage.setItem("token", res.token))
+        .then(console.log(res))
+        .catch((err) => {
+            console.log(err.message)
+        })
 
+        
+    }
+</script>
 <svg id="SvgjsSvg1001" width="2" height="0" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" style="overflow: hidden; top: -100%; left: -100%; position: absolute; opacity: 0;"><defs id="SvgjsDefs1002"></defs><polyline id="SvgjsPolyline1003" points="0,0"></polyline><path id="SvgjsPath1004" d="M0 0 "></path></svg><div class="jvectormap-tip"></div></body></html>
