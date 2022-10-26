@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    
+    <link rel="icon" href="../images/sell-stock.ico" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Language" content="en">
     
@@ -33,7 +33,7 @@
                                                 <span>Please sign in to your account below.</span>
                                             </h4>
                                         </div>
-                                        <form action="https://shopbeta-app.herokuapp.com/users/login" method="post">
+                                        <form onsubmit="userLogin()" action="https://shopbetaonline.herokuapp.com/assets/vendor/Welcome">
                                             <div class="form-row">
                                                 <div class="col-md-12">
                                                     <div class="position-relative form-group"><input name="email" id="exampleEmail" placeholder="Email here..." type="email" class="email form-control" required></div>
@@ -48,8 +48,8 @@
                                             <div class="modal-footer clearfix">
                                                 <div class="float-left"><a href="./forgot Password.html" class="btn-lg btn btn-link">Recover Password</a></div>
                                                 <div class="float-right">
-                                                    <a href="https://shopbetaonline.herokuapp.com">
-                                                      <button onclick=setToken() style="background-color: #ee9617; color: white" type="submit" class="btn btn-lg">Login to Dashboard</button>
+                                                    <a href="https://shopbetaonline.herokuapp.com/assets/vendor/Welcome">
+                                                      <button style="background-color: #ee9617; color: white" type="submit" class="btn btn-lg">Login to Dashboard</button>
                                                     </a>
                                                 </div>
                                             </div>
@@ -65,21 +65,27 @@
     </div>
 <script type="text/javascript" src="./Login Boxed/main.07a59de7b920cd76b874.js.download"></script>
 <script>
-    const setToken = async () => {
-         await fetch('https://shopbeta-app.herokuapp.com/users/login', {
+    const userLogin = async () => {
+        const user = {
+            email: document.querySelector('.email').value,
+            password: document.querySelector('.password').value
+        }
+         await fetch('http://localhost:3000/users/login', {
             method: "POST",
             headers: {
-                email: document.querySelector('.email').value,
-                password: document.querySelector('.password').value
-            }
+                'Content-type': "application/json",
+            },
+            body: JSON.stringify(user)       
         })
         .then((res) => res.json())
-        .then((res) => window.localStorage.setItem("token", res.token))
-        .then(console.log(res))
-        .catch((err) => {
-            console.log(err.message)
+        .then((data) => {
+            console.log(data.token)
+            window.localStorage.setItem("token", data.token)
+            // window.location.assign("http://localhost:3001/")
         })
-
+        .catch((err) => {
+            console.log(`Couldn't set token to local storage`)
+        })
         
     }
 </script>

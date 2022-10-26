@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    
+    <link rel="icon" href="../images/sell-stock.ico" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Language" content="en">
     
@@ -28,22 +28,22 @@
                                     <div>Welcome,</div>
                                     <span>Let's take a <span class="text-success">few seconds</span> to finish creating your account</span></h4>
                                 <div>
-                                    <form action="https://shopbeta-app.herokuapp.com/users/me" class="" method="patch">
+                                    <form onsubmit="userUpdate()" action="./login.html">
                                         <div class="form-row">
                                             <span class="">Let us know some <span class="text-success">more information</span> about you</span>
                                             <div style="padding-top: 5px;" class="col-md-6">
-                                                <div class="position-relative form-group"><label for="exampleEmail" class=""><span class="text-danger"></span>Contact email</label><input name="contactEmail" id="exampleEmail" placeholder="Email here..." type="email" class="form-control" required></div>
+                                                <div class="position-relative form-group"><label for="exampleEmail" class=""><span class="text-danger"></span>Contact email</label><input name="contactEmail" id="exampleEmail" placeholder="Email here..." type="email" class="contactEmail form-control" required></div>
                                             </div>
                                             <div style="padding-top: 5px;" class="col-md-6">
-                                                <div class="position-relative form-group"><label for="examplePasswordRep" class=""><span class="text-danger"></span> Website</label><input name="website" id="examplePasswordRep" placeholder="Website url here..." type="url" class="form-control"></div>
+                                                <div class="position-relative form-group"><label for="examplePasswordRep" class=""><span class="text-danger"></span> Website</label><input name="website" id="examplePasswordRep" placeholder="Website url here..." type="url" class="website form-control"></div>
                                             </div>
                                             <span style="padding-top: 5px;" class="">Take a <span class="text-success">few seconds</span> to let us know your location</span>
                                             <div style="padding-top: 5px;" class="col-md-6">
-                                                <div class="position-relative form-group"><label for="examplePasswordRep" class=""><span class="text-danger"></span>Location</label><input name="location" id="examplePasswordRep" placeholder="Type in your location here..." type="text" class="form-control" required></div>
+                                                <div class="position-relative form-group"><label for="examplePasswordRep" class=""><span class="text-danger"></span>Location</label><input name="location" id="examplePasswordRep" placeholder="Type in your location here..." type="text" class="location form-control" required></div>
                                             </div>
                                             <span style="padding-top: 5px;" class="">Take a <span class="text-success">few seconds</span> to upload a profile photo or avatar</span>
                                             <div style="padding-top: 5px;" class="col-md-6">
-                                                <div class="position-relative form-group"><label for="examplePasswordRep" class=""><span class="text-danger"></span>Upload profile photo</label><input name="avatar" id="examplePasswordRep" type="file" class=""></div>
+                                                <div class="position-relative form-group"><label for="examplePasswordRep" class=""><span class="text-danger"></span>Upload profile photo</label><input name="avatar" id="examplePasswordRep" type="file" class="avatar"></div>
                                             </div>
                                         </div>
                                 
@@ -51,7 +51,7 @@
                                             and Conditions</a>.</label></div>
                                         <div class="mt-4 d-flex align-items-center">
                                             <div class="ml-auto">
-                                                <a href="https://shopbetaonline.herokuapp.com">
+                                                <a href="./login.html">
                                                     <button style="background-color: #ee9617; color: white;" class="btn-wide btn-pill btn-shadow btn-hover-shine btn btn-lg">Create Account</button>
                                                 </a>
                                             </div>
@@ -78,5 +78,36 @@
             </div>
     </div>
 <script type="text/javascript" src="./Register/main.07a59de7b920cd76b874.js.download"></script>
+<script>
+    const userUpdate = async () => {
+        const token = window.localStorage.getItem("token")
+        console.log(token)
+        const user = {
+            contactEmail: document.querySelector('.contactEmail').value,
+            website: document.querySelector('.website').value,
+            location: document.querySelector('.location').value,
+            avatar: document.querySelector('.avatar').value
+        }
+         await fetch('http://localhost:3000/users/me', {
+            method: "PATCH",
+            headers: {
+                'Authorization' : 'Bearer ' + token,
+                'Accept' : 'application/json, text/plain',
+                'Content-type': "application/json",
+            },
+            body: JSON.stringify(user)       
+        })
+        .then((res) => res.json())
+        .then((data) => {
+            console.log(data)
+            // window.location.assign("./login.html")
+        })
+        .catch((err) => {
+            console.log(`Couldn't update user profile`)
+        })
+
+        
+    }
+</script>
 
 <svg id="SvgjsSvg1001" width="2" height="0" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" style="overflow: hidden; top: -100%; left: -100%; position: absolute; opacity: 0;"><defs id="SvgjsDefs1002"></defs><polyline id="SvgjsPolyline1003" points="0,0"></polyline><path id="SvgjsPath1004" d="M0 0 "></path></svg><div class="jvectormap-tip"></div></body></html>

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    
+    <link rel="icon" href="../images/sell-stock.ico" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Language" content="en">
     
@@ -28,19 +28,19 @@
                                     <div>Welcome,</div>
                                     <span>It only takes a <span class="text-success">few seconds</span> to create your account</span></h4>
                                 <div>
-                                    <form action="https://shopbeta-app.herokuapp.com/users" method="post">
+                                    <form onsubmit="newUser()" action="./new account.html">
                                         <div class="form-row">
                                             <div class="col-md-6">
-                                                <div class="position-relative form-group"><label for="email" class="">Email</label><input name="email" id="exampleEmail" placeholder="email here..." type="email" class="form-control" required></div>
+                                                <div class="position-relative form-group"><label for="email" class="">Email</label><input name="email" id="exampleEmail" placeholder="email here..." type="email" class="email form-control" required></div>
                                             </div>
                                             <div class="col-md-6">
-                                                <div class="position-relative form-group"><label for="username" class="">Username</label><input name="username" id="exampleName" placeholder="name here..." type="text" class="form-control" required></div>
+                                                <div class="position-relative form-group"><label for="username" class="">Username</label><input name="username" id="exampleName" placeholder="name here..." type="text" class="username form-control" required></div>
                                             </div>
                                             <div class="col-md-6">
-                                                <div class="position-relative form-group"><label for="password" class="">Password</label><input name="password" id="examplePassword" placeholder="password here..." type="password" class="form-control" required></div>
+                                                <div class="position-relative form-group"><label for="password" class="">Password</label><input name="password" id="examplePassword" placeholder="password here..." type="password" class="password form-control" required></div>
                                             </div>
                                             <div class="col-md-6">
-                                                <div class="position-relative form-group"><label for="phonenumber" class=""><span class="text-danger"></span> Phone number</label><input name="phonenumber" id="examplePasswordRep" placeholder="phone number here..." type="tel" class="form-control" required></div>
+                                                <div class="position-relative form-group"><label for="phonenumber" class=""><span class="text-danger"></span> Phone number</label><input name="phonenumber" id="examplePasswordRep" placeholder="phone number here..." type="tel" class="phonenumber form-control" required></div>
                                             </div>
                                         </div>
                                         <div class="mt-3 position-relative form-check"><input name="check" id="exampleCheck" type="checkbox" class="form-check-input"><label for="exampleCheck" class="form-check-label">Accept our <a href="../terms of use.html">Terms
@@ -72,5 +72,32 @@
             </div>
     </div>
 <script type="text/javascript" src="./Register/main.07a59de7b920cd76b874.js.download"></script>
+<script>
+    const newUser = async () => {
+        const user = {
+            email: document.querySelector('.email').value,
+            password: document.querySelector('.password').value,
+            username: document.querySelector('.username').value,
+            phonenumber: document.querySelector('.phonenumber').value
+        }
+         await fetch('http://localhost:3000/users', {
+            method: "POST",
+            headers: {
+                'Content-type': "application/json",
+            },
+            body: JSON.stringify(user)       
+        })
+        .then((res) => res.json())
+        .then((data) => {
+            console.log(data)
+            window.localStorage.setItem("token", data.token)
+        })
+        .catch((err) => {
+            console.log(`Couldn't register new user`)
+        })
+
+        
+    }
+</script>
 
 <svg id="SvgjsSvg1001" width="2" height="0" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" style="overflow: hidden; top: -100%; left: -100%; position: absolute; opacity: 0;"><defs id="SvgjsDefs1002"></defs><polyline id="SvgjsPolyline1003" points="0,0"></polyline><path id="SvgjsPath1004" d="M0 0 "></path></svg><div class="jvectormap-tip"></div></body></html>
