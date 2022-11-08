@@ -81,7 +81,6 @@
         .then((data) => {
             console.log(data.token)
             window.localStorage.setItem("token", data.token)
-            // window.location.assign("http://localhost:3001/")
         })
         .catch((err) => {
             console.log(`Couldn't set token to local storage`)
