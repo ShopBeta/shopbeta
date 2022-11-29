@@ -41,9 +41,8 @@
                                             <div style="padding-top: 5px;" class="col-md-6">
                                                 <div class="position-relative form-group"><label for="examplePasswordRep" class=""><span class="text-danger"></span>Location</label><input name="location" id="examplePasswordRep" placeholder="Type in your location here..." type="text" class="location form-control" required></div>
                                             </div>
-                                            <span style="padding-top: 5px;" class="">Take a <span class="text-success">few seconds</span> to upload a profile photo or avatar</span>
                                             <div style="padding-top: 5px;" class="col-md-6">
-                                                <div class="position-relative form-group"><label for="examplePasswordRep" class=""><span class="text-danger"></span>Upload profile photo</label><input name="avatar" id="examplePasswordRep" type="file" class="avatar"></div>
+                                                <div class="position-relative form-group"><label for="examplePasswordRep" class=""><span class="text-danger"></span> Bio</label><input name="bio" id="examplePasswordRep" placeholder="Write a short bio here..." type="text" class="bio form-control"></div>
                                             </div>
                                         </div>
                                 
@@ -86,7 +85,7 @@
             contactEmail: document.querySelector('.contactEmail').value,
             website: document.querySelector('.website').value,
             location: document.querySelector('.location').value,
-            avatar: document.querySelector('.avatar').value
+            bio: document.querySelector('.bio').value,
         }
          await fetch('https://shopbeta-app.herokuapp.com/users/me', {
             method: "PATCH",
