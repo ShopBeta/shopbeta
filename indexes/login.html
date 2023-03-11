@@ -33,7 +33,7 @@
                                                 <span>Please sign in to your account below.</span>
                                             </h4>
                                         </div>
-                                        <form onsubmit="userLogin()" action="https://shopbetaonline.herokuapp.com/assets/vendor/Welcome">
+                                        <form onsubmit="userLogin()" action="https://shopbetaonline.herokuapp.com/assets/Welcome">
                                             <div class="form-row">
                                                 <div class="col-md-12">
                                                     <div class="position-relative form-group"><input name="email" id="exampleEmail" placeholder="Email here..." type="email" class="email form-control" required></div>
@@ -48,7 +48,7 @@
                                             <div class="modal-footer clearfix">
                                                 <div class="float-left"><a href="./forgot Password.html" class="btn-lg btn btn-link">Recover Password</a></div>
                                                 <div class="float-right">
-                                                    <a href="https://shopbetaonline.herokuapp.com/assets/vendor/Welcome">
+                                                    <a href="https://shopbetaonline.herokuapp.com/assets/Welcome">
                                                       <button style="background-color: #ee9617; color: white" type="submit" class="btn btn-lg">Login to Dashboard</button>
                                                     </a>
                                                 </div>
@@ -81,6 +81,7 @@
         .then((data) => {
             console.log(data.token)
             window.localStorage.setItem("token", data.token)
+            window.localStorage.setItem("meId", data.user._id)
         })
         .catch((err) => {
             console.log(`Couldn't set token to local storage`)
