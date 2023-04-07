@@ -87,7 +87,7 @@
             location: document.querySelector('.location').value,
             bio: document.querySelector('.bio').value,
         }
-         await fetch('https://shopbeta-app.herokuapp.com/users/me', {
+         await fetch('https://shopbeta-api.onrender.com/users/me', {
             method: "PATCH",
             headers: {
                 'Authorization' : 'Bearer ' + token,
