@@ -1,7 +1,7 @@
 # ShopBeta
 
 ShopBeta is an e-commerce platform that integrates social engagement, personalized recommendations, community interaction, secure payments, and logistics support into a single system. The platform is designed to combine traditional online shopping features with social and community-driven elements.
-
+ 
 ## Overview
 
 ShopBeta aims to improve the online shopping experience by enabling users to discover products through social interaction, personalized recommendations, and community participation. The platform supports both buyers and sellers by providing tools for engagement, transactions, and analytics.
